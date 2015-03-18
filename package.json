@@ -1,0 +1,26 @@
+{
+  "name": "isvisible",
+  "version": "1.0.1",
+  "description": "Check if the element is visible and clickable",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"readme": "pretty-readme > readme.md",
+	"browser": "browserify . -s _ > browser/browser.js",
+	"poor": "browserify *test*.js | poor -b ie:6..8,chrome -R dot",
+	"pregit": "npm run browser && npm run readme"
+  },
+  "author": "chunpu",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chunpu/is-visible.git"
+  },
+  "keywords": [
+    "ad"
+  ],
+  "bugs": {
+    "url": "https://github.com/chunpu/is-visible/issues"
+  },
+  "homepage": "https://github.com/chunpu/is-visible"
+}
