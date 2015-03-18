@@ -2,14 +2,11 @@
 (function (global){
 module.exports = exports = isVisible
 
+exports.getStyle = getStyle
+
 var doc = global.document
 
 function isVisible(el, isStrict) {
-	var ret = exports.canClick(el, isStrict)
-	return ret
-}
-
-exports.canClick = function(el, isStrict) {
 	if (isElement(el)) {
 		el.style.opacity = 'inherit'
 		var opacity = getStyle(el, 'opacity') || 1
@@ -32,8 +29,6 @@ exports.canClick = function(el, isStrict) {
 	}
 	return false
 }
-
-exports.getStyle = getStyle
 
 function getStyle(el, name) {
 	if (global.getComputedStyle) {
