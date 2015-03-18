@@ -1,4 +1,4 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g._ = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.isVisible = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (global){
 module.exports = exports = isVisible
 
@@ -13,7 +13,9 @@ exports.canClick = function(el, isStrict) {
 	if (isElement(el)) {
 		el.style.opacity = 'inherit'
 		var opacity = getStyle(el, 'opacity') || 1
-		console.log('opacity', opacity)
+		if ('inherit' == opacity) {
+			opacity = 1 // can not check old browser
+		}
 
 		if (opacity > 0.09) {
 			var offset = el.getBoundingClientRect()
@@ -21,8 +23,8 @@ exports.canClick = function(el, isStrict) {
 				if (!isStrict) return true
 				// strict mode
 				if (opacity > 0.89) {
-					var x = offset.left + offset.width / 2
-					var y = offset.top + offset.height / 2
+					var x = offset.left + el.offsetWidth / 2
+					var y = offset.top + el.offsetHeight / 2
 					if (pointInElement(el, x, y)) return true
 				}
 			}

@@ -7,7 +7,16 @@ function get(id) {
 	return document.getElementById(id)
 }
 
+function add(str) {
+	body.innerHTML += str
+}
+
+function reset() {
+	body.innerHTML = '<style>* {margin: 0; padding: 0}</style>'
+}
+
 describe('is visible', function() {
+	beforeEach(reset)
 	it('normal', function() {
 		body.innerHTML = '<h1 id="test">foo</h1>'
 		var el = get('test')
@@ -30,7 +39,6 @@ describe('is visible', function() {
 	it('parent opacity >= 0.9 in strict mode', function() {
 		body.innerHTML = '<div style="opacity: 0.9"><h1 id="test">foo</h1></div>'
 		var el = get('test')
-		//assert(isVisible(el, true))
 		assert(isVisible(el, true))
 	})
 

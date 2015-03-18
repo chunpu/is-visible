@@ -21,8 +21,8 @@ exports.canClick = function(el, isStrict) {
 				if (!isStrict) return true
 				// strict mode
 				if (opacity > 0.89) {
-					var x = offset.left + offset.width / 2
-					var y = offset.top + offset.height / 2
+					var x = offset.left + el.offsetWidth / 2
+					var y = offset.top + el.offsetHeight / 2
 					if (pointInElement(el, x, y)) return true
 				}
 			}
