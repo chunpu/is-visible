@@ -1,6 +1,6 @@
 {
   "name": "isvisible",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Check if the element is visible and clickable",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/chunpu/is-visible.git"
+  },
+  "devDependencies": {
+    "browserify": "latest",
+    "poor": "latest"
   },
   "keywords": [
     "ad"
