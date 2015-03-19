@@ -9,20 +9,22 @@ var doc = global.document
 function isVisible(el, isStrict) {
 	if (isElement(el)) {
 		el.style.opacity = 'inherit'
-		var opacity = getStyle(el, 'opacity') || 1
-		if ('inherit' == opacity) {
+		var rawOpacity = getStyle(el, 'opacity')
+
+		var opacity = +rawOpacity
+		if (opacity != rawOpacity) {
 			opacity = 1 // can not check old browser
 		}
 
 		if (opacity > 0.09) {
 			var offset = el.getBoundingClientRect()
-			if (pointInElement(el, offset.left, offset.top)) {
+			if (isPointInElement(el, offset.left, offset.top)) {
 				if (!isStrict) return true
 				// strict mode
 				if (opacity > 0.89) {
 					var x = offset.left + el.offsetWidth / 2
 					var y = offset.top + el.offsetHeight / 2
-					if (pointInElement(el, x, y)) return true
+					if (isPointInElement(el, x, y)) return true
 				}
 			}
 		}
@@ -44,7 +46,7 @@ function isElement(el) {
 	return false
 }
 
-function pointInElement(el, x, y) {
+function isPointInElement(el, x, y) {
 	var target = doc.elementFromPoint(x, y)
 	while (isElement(target)) {
 		if (target == el) return true

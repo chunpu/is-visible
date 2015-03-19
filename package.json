@@ -1,6 +1,6 @@
 {
   "name": "isvisible",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Check if the element is visible and clickable",
   "main": "index.js",
   "scripts": {
